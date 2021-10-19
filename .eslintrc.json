@@ -13,7 +13,7 @@
         "plugin:@angular-eslint/template/process-inline-templates"
       ],
       "rules": {
-        "newline-before-return": ["error"],
+        "newline-before-return": ["warning"],
         "@angular-eslint/directive-selector": [
           "error",
           {
