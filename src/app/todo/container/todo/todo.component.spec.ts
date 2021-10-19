@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { TodoService } from '../../services/todo.service';
+import { TodoServiceMock } from '../../services/todo.service-mock';
 import { TodoComponent } from './todo.component';
 
 describe('TodoComponent', () => {
@@ -8,9 +9,14 @@ describe('TodoComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ TodoComponent ]
-    })
-    .compileComponents();
+      declarations: [TodoComponent],
+      providers: [
+        {
+          provide: TodoService,
+          useClass: TodoServiceMock,
+        },
+      ],
+    }).compileComponents();
   });
 
   beforeEach(() => {
