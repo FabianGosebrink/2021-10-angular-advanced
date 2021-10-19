@@ -2,12 +2,12 @@
   <input
     class="form-check-input me-2"
     type="checkbox"
-    [checked]="item.done"
+    [checked]="item?.done"
     value=""
     aria-label="..."
     (click)="markAsDone(item)"
   />
-  {{ item.value }}
+  {{ item?.value }}
 </div>
 <button type="button" class="btn btn-danger btn-sm" (click)="deleteTodo(item)">
   Delete

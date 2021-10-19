@@ -4,7 +4,7 @@ import { RestService } from './../../shared/rest/rest.service';
 import { RestServiceMock } from './../../shared/rest/rest.service-mock';
 import { TodoService } from './todo.service';
 
-fdescribe('TodoService', () => {
+describe('TodoService', () => {
   let service: TodoService;
   let restService: RestService;
 
