@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Todo } from '../../services/todo';
-import { TodoService } from '../../services/todo.service';
+import { TodoStoreFacade } from '../../store/todo.facade';
 
 @Component({
   selector: 'app-todo',
@@ -8,28 +9,23 @@ import { TodoService } from '../../services/todo.service';
   styleUrls: ['./todo.component.css'],
 })
 export class TodoComponent implements OnInit {
-  items: Todo[] = [];
+  loading$: Observable<boolean>;
+  items$: Observable<Todo[]>;
 
-  constructor(private readonly todoService: TodoService) {}
+  constructor(private readonly todoStoreFacade: TodoStoreFacade) {}
 
   ngOnInit(): void {
-    this.todoService.getAllTodos().subscribe((items: any[]) => {
-      this.items = items;
-    });
+    this.loading$ = this.todoStoreFacade.loading$;
+    this.items$ = this.todoStoreFacade.items$;
+
+    this.todoStoreFacade.getAllItems();
   }
 
-  addTodo(value: Todo): void {
-    this.todoService.addTodo(value).subscribe((item) => this.items.push(item));
+  addTodo(value: string): void {
+    this.todoStoreFacade.addTodo(value);
   }
 
-  deleteTodo(itemToDelete: Todo): void {
-    this.todoService.deleteTodo(itemToDelete).subscribe(() => {
-      this.items = this.items.filter((item) => item.id !== itemToDelete.id);
-    });
-  }
+  deleteTodo(itemToDelete: Todo): void {}
 
-  markAsDone(item: Todo): void {
-    item.done = !item.done;
-    this.todoService.updateTodo(item).subscribe(() => console.log('updated'));
-  }
+  markAsDone(item: Todo): void {}
 }

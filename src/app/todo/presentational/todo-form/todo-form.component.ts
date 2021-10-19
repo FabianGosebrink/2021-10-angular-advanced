@@ -21,15 +21,13 @@ export class TodoFormComponent implements OnInit {
         [Validators.required, MinLengthValidator.minlengthValidator],
       ],
     });
-
-    this.firstFormGroup.get('todoValue').valueChanges.subscribe(console.log);
   }
 
   addTodo(): void {
-    // this.todoAdded.emit({
-    //   value: this.input.nativeElement.value,
-    // });
+    this.todoAdded.emit({
+      value: this.firstFormGroup.value.todoValue,
+    });
 
-    console.log(this.firstFormGroup.value);
+    this.firstFormGroup.reset();
   }
 }
