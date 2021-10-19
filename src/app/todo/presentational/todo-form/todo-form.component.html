@@ -1,6 +1,15 @@
-<div class="form-outline flex-fill">
-  <input #input type="text" id="form1" class="form-control form-control-lg" />
-</div>
-<button type="button" (click)="addTodo()" class="btn btn-primary btn-lg ms-2">
-  Add
-</button>
+<form
+  class="d-flex justify-content-center align-items-center mb-4"
+  [formGroup]="firstFormGroup"
+  (ngSubmit)="addTodo()"
+>
+  <div class="form-outline flex-fill">
+    <input
+      formControlName="todoValue"
+      type="text"
+      id="form1"
+      class="form-control form-control-lg"
+    />
+  </div>
+  <button type="submit" class="btn btn-primary btn-lg ms-2">Add</button>
+</form>

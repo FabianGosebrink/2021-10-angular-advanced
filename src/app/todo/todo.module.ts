@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { TodoComponent } from './container/todo/todo.component';
 import { TodoFormComponent } from './presentational/todo-form/todo-form.component';
@@ -15,6 +16,7 @@ import { TodoListComponent } from './presentational/todo-list/todo-list.componen
   ],
   imports: [
     CommonModule,
+    ReactiveFormsModule,
     RouterModule.forChild([
       {
         path: '',
