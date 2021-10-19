@@ -10,6 +10,19 @@
       id="form1"
       class="form-control form-control-lg"
     />
+    <span *ngIf="firstFormGroup?.get('todoValue').errors?.required">
+      Bitte gib einen Wert ein
+    </span>
+
+    <span *ngIf="firstFormGroup?.get('todoValue').errors?.giveMeDaMinLength">
+      Bitte gib einen Wert ein der lang genug ist
+    </span>
   </div>
-  <button type="submit" class="btn btn-primary btn-lg ms-2">Add</button>
+  <button
+    [disabled]="!firstFormGroup.valid"
+    type="submit"
+    class="btn btn-primary btn-lg ms-2"
+  >
+    Add
+  </button>
 </form>

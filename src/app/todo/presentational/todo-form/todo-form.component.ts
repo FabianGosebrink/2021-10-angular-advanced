@@ -1,11 +1,6 @@
-import {
-  Component,
-  EventEmitter,
-  OnInit,
-  Output,
-  ViewChild,
-} from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MinLengthValidator } from './min-length.validator';
 
 @Component({
   selector: 'app-todo-form',
@@ -14,14 +9,17 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 })
 export class TodoFormComponent implements OnInit {
   @Output() todoAdded = new EventEmitter();
-  @ViewChild('input') input: any;
 
   firstFormGroup: FormGroup;
 
   constructor(private readonly formBuilder: FormBuilder) {}
+
   ngOnInit(): void {
     this.firstFormGroup = this.formBuilder.group({
-      todoValue: '',
+      todoValue: [
+        '...',
+        [Validators.required, MinLengthValidator.minlengthValidator],
+      ],
     });
 
     this.firstFormGroup.get('todoValue').valueChanges.subscribe(console.log);
